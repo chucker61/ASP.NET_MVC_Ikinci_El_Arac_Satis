@@ -1,0 +1,96 @@
+﻿@model UpdatePostVM
+
+
+<form method="post" class="col-md-6 offset-md-3" enctype="multipart/form-data">
+    <h2 class="heading-margin text-center"><i>İlanını güncelle!</i></h2>
+    <div class="mb-3 mt-4">
+        <label asp-for="@Model.Title" class="form-label">Başlık</label>
+        <textarea asp-for="@Model.Title" class="form-control" rows="6" placeholder="Başlıkta görüntülemek istediğiniz bilgileri yazabilirsiniz."></textarea>
+        <span asp-validation-for="@Model.Title" class="text-danger"></span>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6 mb-3">
+            <label asp-for="@Model.Make" class="form-label">Marka</label>
+            <input asp-for="@Model.Make" class="form-control" placeholder="Mercedes, BMW, Fiat, vb.">
+            <span asp-validation-for="@Model.Make" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="@Model.Model" class="form-label">Model</label>
+            <input asp-for="@Model.Model" class="form-control" placeholder="S-Class, 640D, Egea, vb.">
+            <span asp-validation-for="@Model.Model" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.Description" class="form-label">Açıklama</label>
+        <textarea asp-for="@Model.Description" class="form-control" rows="6" placeholder="Aracınızla ilgili anlatmak istediklerinizi buraya yazabilirsiniz."></textarea>
+        <span asp-validation-for="@Model.Description" class="text-danger"></span>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-4 mb-3 mt-3">
+            <label asp-for="@Model.CategoryId" class="form-label">Kategori</label>
+            <select asp-for="@Model.CategoryId" class="form-select">
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@category.Id">@category.Name</option>
+                }
+            </select>
+            <span asp-validation-for="@Model.CategoryId" class="small text-danger"></span>
+        </div>
+        <div class="col-md-4 mb-3 mt-3">
+            <label asp-for="@Model.FuelTypeId" class="form-label">Yakıt Türü</label>
+            <select asp-for="@Model.FuelTypeId" class="form-select">
+                @foreach (var fuelType in Model.FuelTypes)
+                {
+                    <option value="@fuelType.Id">@fuelType.Name</option>
+                }
+            </select>
+            <span asp-validation-for="@Model.FuelTypeId" class="small text-danger"></span>
+        </div>
+        <div class="col-md-4 mb-3 mt-3">
+            <label asp-for="@Model.TransmissionTypeId" class="form-label">Vites Türü</label>
+            <select asp-for="@Model.TransmissionTypeId" class="form-select">
+                @foreach (var transmissionType in Model.TransmissionTypes)
+                {
+                    <option value="@transmissionType.Id">@transmissionType.Name</option>
+                }
+            </select>
+            <span asp-validation-for="@Model.TransmissionTypeId" class="small text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-4 mb-3 mt-3">
+            <label asp-for="@Model.Year" class="form-label">Araç Üretim Yılı</label>
+            <input asp-for="@Model.Year" class="form-control">
+            <span asp-validation-for="@Model.Year" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 mb-3 mt-3">
+            <label asp-for="@Model.Kilometer" class="form-label">Kilometre</label>
+            <input asp-for="@Model.Kilometer" class="form-control">
+            <span asp-validation-for="@Model.Kilometer" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 mb-3 mt-3">
+            <label asp-for="@Model.HorsePower" class="form-label">Beygir Gücü</label>
+            <input asp-for="@Model.HorsePower" class="form-control">
+            <span asp-validation-for="@Model.HorsePower" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-4 mb-3">
+            <label asp-for="@Model.Price" class="form-label">Fiyat</label>
+            <input asp-for="@Model.Price" class="form-control">
+            <span asp-validation-for="@Model.Price" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label asp-for="@Model.LocationCountry" class="form-label">Ülke</label>
+            <input asp-for="@Model.LocationCountry" class="form-control">
+            <span asp-validation-for="@Model.LocationCountry" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label asp-for="@Model.LocationCity" class="form-label">Şehir</label>
+            <input asp-for="@Model.LocationCity" class="form-control">
+            <span asp-validation-for="@Model.LocationCity" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+    <div align="center"><input type="submit" class="btn btn-dark col-4" value="Değişiklikleri Kaydet" /></div>
+</form>

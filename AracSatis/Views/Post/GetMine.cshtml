@@ -1,0 +1,65 @@
+﻿@model PostVM
+
+<div class="row">
+    @if(Model.Posts.Count==0)
+    {
+        <div class="mt-5">
+            <h2>Görünüşe göre henüz bir ilanınız yok.</h2>
+            <h3 class="mt-5">Haydi hemen oluşturalım!</h3>
+            <a asp-controller="Post" asp-action="Create" class="btn-lg btn-warning mt-5 text-decoration-none">Oluştur!</a>
+        </div>
+    }
+    else
+    {
+        @foreach (var post in Model.Posts)
+        {
+            @if (post.isPublic)
+            {
+                <div class="card m-3" style="width: 18rem;">
+                    <a asp-controller="Post" asp-action="Offer" asp-route-id="@post.Id" style="text-decoration:none; color:black;">
+                        <div class="mb-1 align-self-end"></div>
+                        <p class="card-text fw-bold mt-auto">@post.Title.Substring(0,28)...</p>
+                        <h6 class="card-price mt-3">@post.Price.ToString()TL</h6>
+                        <img src="@post.CoverImage" class="card-img-top" alt="deneme" height="200px">
+                        <div class="card-body d-flex flex-column">
+
+                            <hr class="mt-1 mb-2" />
+                            <p class="card-text fw-lighter mt-auto"><i>@post.Description.Substring(0,50)...</i></p>
+
+                        </div>
+                    </a>
+                    <div class="d-flex justify-content-evenly mb-3">
+                        <a asp-controller="Post" asp-action="Update" asp-route-id="@post.Id" class="btn btn-primary me-2 ms-2">Güncelle</a>
+                        <a asp-controller="Post" asp-action="Delete" asp-route-id="@post.Id" class="btn btn-danger me-2 ms-2">Sil</a>
+                    </div>
+
+                </div>
+            }
+            else
+            {
+                <div class="card m-3" style="width: 18rem;">
+                    <a asp-controller="Post" asp-action="Offer" asp-route-id="@post.Id" style="text-decoration:none; color:black;">
+                        <div class="mb-1 align-self-end"></div>
+                        <p class="card-header text-danger">Onaylanmayı Bekliyor</p>
+                        <p class="card-text fw-bold mt-auto">@post.Title.Substring(0,28)...</p>
+                        <h6 class="card-price mt-3">@post.Price.ToString()TL</h6>
+                        <img src="@post.CoverImage" class="card-img-top" alt="deneme" height="200px">
+                        <div class="card-body d-flex flex-column">
+
+                            <hr class="mt-1 mb-2" />
+                            <p class="card-text fw-lighter mt-auto"><i>@post.Description.Substring(0,50)...</i></p>
+
+                        </div>
+                    </a>
+                    <div class="d-flex justify-content-evenly mb-3">
+                        <a asp-controller="Post" asp-action="Update" asp-route-id="@post.Id" class="btn btn-primary">Güncelle</a>
+                        <a asp-controller="Post" asp-action="Delete" asp-route-id="@post.Id" class="btn btn-danger">Sil</a>
+                    </div>
+
+                </div>
+            }
+
+        }
+    }
+    
+</div>

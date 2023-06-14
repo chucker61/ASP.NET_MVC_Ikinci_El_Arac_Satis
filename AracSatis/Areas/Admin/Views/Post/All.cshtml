@@ -1,0 +1,34 @@
+﻿@model PostVM
+
+
+<div class="col-md-10 offset-md-1">
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th scope="col">Başlık</th>
+                <th scope="col">Açıklama</th>
+                <th scope="col">Fiyat</th>
+                <th scope="col">Onaylandı mı?</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var post in Model.Posts)
+            {
+                <tr>
+                    <td>@post.Title.Substring(0,20)...</td>
+                    <td>@post.Description.Substring(0,20)...</td>
+                    <td>@post.Price</td>
+                    <td>@(post.isPublic ? "Evet" : "Hayır")</td>
+                    <td>
+                        <a asp-area="" asp-controller="Post" asp-action="Delete" asp-route-id="@post.Id" class="btn btn-danger float-end mx-1">Sil</a>
+                        <a asp-area="" asp-controller="Post" asp-action="Update" asp-route-id="@post.Id" class="btn btn-dark float-end mx-1">Güncelle</a>
+                        <a asp-area="" asp-controller="Post" asp-action="Offer" asp-route-id="@post.Id" class="btn btn-secondary float-end mx-1">İncele</a>
+                        <a asp-area="Admin" asp-controller="Post" asp-action="ChangeVisibility" asp-route-id="@post.Id" class="btn btn-warning float-end mx-1">@(post.isPublic ? "Gizle" : "Onayla")</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<hr />

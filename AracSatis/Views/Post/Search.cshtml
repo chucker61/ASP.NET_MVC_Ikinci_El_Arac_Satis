@@ -1,0 +1,104 @@
+﻿@model SearchPostVM
+
+<form method="post" asp-action="SearchResult" class="col-md-6 offset-md-3">
+    <h2 class="heading-margin text-center"><i>En iyi aracı bulmak için filtrele!</i></h2>
+    <div class="row mb-4 mt-4">
+        <div class="col-md-4">
+            <label asp-for="@Model.SearchTerm" class="form-label">Marka:</label>
+            <input asp-for="@Model.SearchTerm" class="form-control" placeholder="Mercedes, Mercedes S-Class, Golf 5 GTI, etc...">
+        </div>
+    </div>
+    <hr class="my-4" />
+    <div class="row mb-4">
+        <div class="row">
+            <label asp-for="@Model.minPrice" class="form-label">Fiyat Aralığı:</label>
+        </div>
+        <div class="col-md-4 mt-1">
+            <input asp-for="@Model.minPrice" class="form-control" placeholder="Minimum">
+            <span asp-validation-for="@Model.minPrice" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 mt-1">
+            <input asp-for="@Model.maxPrice" class="form-control" placeholder="Maksimum">
+            <span asp-validation-for="@Model.maxPrice" class="text-danger"></span>
+        </div>
+    </div>
+    <hr class="my-4" />
+    <div class="row mb-4">
+        <div class="row">
+            <label asp-for="@Model.minYear" class="form-label">Yıl Aralığı</label>
+        </div>
+        <div class="col-md-4 mt-1">
+            <input asp-for="@Model.minYear" class="form-control" placeholder="From year">
+            <span asp-validation-for="@Model.minYear" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 mt-1">
+            <input asp-for="@Model.maxYear" class="form-control" placeholder="To year">
+            <span asp-validation-for="@Model.maxYear" class="text-danger"></span>
+        </div>
+    </div>
+    <hr class="my-4" />
+    <div class="row mb-4">
+        <div class="row">
+            <label asp-for="@Model.minKilometer" class="form-label">Kilometre Aralığı:</label>
+        </div>
+        <div class="col-md-4 mt-1">
+            <input asp-for="@Model.minKilometer" class="form-control" placeholder="Minimum">
+            <span asp-validation-for="@Model.minYear" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 mt-1">
+            <input asp-for="@Model.maxKilometer" class="form-control" placeholder="Maksimum">
+            <span asp-validation-for="@Model.maxKilometer" class="text-danger"></span>
+        </div>
+    </div>
+    <hr class="my-4" />
+    <h5 class="my-3 text-center">Araç Kategorisi:</h5>
+    <div class="row">
+        <div class="col">
+            <div>
+                @foreach (var category in Model.Categories)
+                {
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="SelectedCategory" value="@category.Id" id="extra_@category.Id" />
+                        <label class="form-check-label" for="extra_@category.Id">@category.Name</label>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <hr class="my-4" />
+    <h5 class="my-3 text-center">Vites Türü:</h5>
+    <div class="row">
+        <div class="col">
+            <div>
+                @foreach (var category in Model.TransmissionTypes)
+                {
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="SelectedTransmissionType" value="@category.Id" id="extra_@category.Id" />
+                        <label class="form-check-label" for="extra_@category.Id">@category.Name</label>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <hr class="my-4" />
+    <h5 class="my-3 text-center">Yakıt Türü:</h5>
+    <div class="row">
+        <div class="col">
+            <div>
+                @foreach (var category in Model.FuelTypes)
+                {
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="SelectedFuelType" value="@category.Id" id="extra_@category.Id" />
+                        <label class="form-check-label" for="extra_@category.Id">@category.Name</label>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <hr />
+    <div align="center"><input type="submit" class="btn btn-dark col-4" value="Filtrele" /></div>
+</form>
+
+
+
